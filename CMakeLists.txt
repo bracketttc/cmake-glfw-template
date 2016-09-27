@@ -12,7 +12,6 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 find_package( GLFW COMPONENTS glfw )
 if( NOT GLFW_FOUND )
     include( BuildGLFW )
-    BuildGLFW()
 endif()
 
 find_package( OpenGL COMPONENTS GL REQUIRED )
