@@ -10,7 +10,6 @@ file( GLOB HEADERS "*.hpp" "*.h" "*.hxx" "include/*.hpp" "include/*.h" "include/
 
 if ( GLOB_SOURCES OR GLOB_HEADERS )
     add_library( ${BUILT_LIBRARY_NAME} ${SOURCES} ${HEADERS} )
-    target_link_libraries( ${BUILT_LIBRARY_NAME} ${GLFW_LIBRARIES} )
 endif()
 
 # each cpp file placed in the bin subdirectory is compiled as an independent executable
@@ -18,7 +17,6 @@ file( GLOB BIN_SOURCES "bin/*.cpp" )
 foreach( BIN_SOURCE ${BIN_SOURCES} )
     get_filename_component( BIN_NAME ${BIN_SOURCE} NAME_WE )
     add_executable( ${BIN_NAME} ${BIN_SOURCE} )
-    target_link_libraries( ${BIN_NAME} ${GLFW_LIBRARIES} )
     if ( GLOB_SOURCES OR GLOB_HEADERS )
         target_link_libraries( ${BIN_NAME} ${BUILT_LIBRARY_NAME} )
     endif()
@@ -33,7 +31,6 @@ file( GLOB TEST_SOURCES "test/*.cpp" )
 foreach( TEST_SOURCE ${TEST_SOURCES} )
     get_filename_component( TEST_NAME ${TEST_SOURCE} NAME_WE )
     add_executable( ${TEST_NAME} ${TEST_SOURCE} )
-    target_link_libraries( ${TEST_NAME} ${GLFW_LIBRARIES} )
     if ( GLOB_SOURCES OR GLOB_HEADERS )
         target_link_libraries( ${TEST_NAME} ${BUILT_LIBRARY_NAME} )
     endif()

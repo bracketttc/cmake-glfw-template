@@ -14,14 +14,20 @@ if( NOT GLFW_FOUND )
     include( BuildGLFW )
 endif()
 
+find_package( GLM )
+if( NOT GLM_FOUND )
+    include( FetchGLM )
+endif()
+
 find_package( OpenGL COMPONENTS GL REQUIRED )
 find_package( Threads REQUIRED )
 
 # Project-wide includes
 include_directories( include )
+include_directories( SYSTEM ${GLFW_INCLUDE_DIRS} ${GLM_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR} )
 
 # Project-wide dependencies
-link_libraries( ${CMAKE_THREAD_LIBS_INIT} )
+link_libraries( ${CMAKE_THREAD_LIBS_INIT} ${GLFW_LIBRARIES} ${OPENGL_LIBRARIES} )
 
 # build the project
 add_subdirectory( src )
